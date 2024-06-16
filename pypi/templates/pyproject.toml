@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opm"
+version = "%%PACKAGE_VERSION%%"
+description = "OPM-Common Python bindings"
+readme = {file = "README.md", content-type = "text/markdown"}
+authors = [{name = "The Open Porous Media Project", email = "opmuser@gmail.com"}]
+license = {text = "GNU General Public License v3 (GPLv3)"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+]
+requires-python = ">=3.8"  # This is the minimum version for python -m build ...
+
+[project.urls]
+homepage = "http://www.opm-project.org"
+
+[tool.setuptools]
+packages = [
+    "opm",
+    "opm.io",
+    "opm.io.deck",
+    "opm.io.ecl_state",
+    "opm.io.parser",
+    "opm.io.schedule",
+    "opm.io.ecl",
+    "opm.simulators",
+    "opm.tools",
+    "opm.util"
+]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"opm" = ["%%OPM_COMMON_SO%%"]
+"opm.simulators" = ["%%OPM_SIMULATORS_SO%%"]

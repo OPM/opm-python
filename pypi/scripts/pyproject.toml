@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "opm-pypi-tools"
+version = "0.1.0"
+description = """Helper scripts for generating and uploading OPM Python packages to PyPI."""
+authors = ["Håkon Hægland <hakon.hagland@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "opm_pypi_tools", from = "src"}]
+license = "GPL3"
+repository = "https://github.com/OPM/opm-python"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.1.7"
+build = "^1.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+opm-pypi-tools = "opm_pypi_tools.main:main"
