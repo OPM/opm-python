@@ -2,6 +2,10 @@
 
 #include "export.hpp"
 
+// NOTE: This file will be generated at compile time and placed in the build directory
+// See python/generate_docstring_hpp.py, and python/simulators/CMakeLists.txt for details
+#include "OpmCommonPythonDoc.hpp"
+
 namespace {
         const Group& get_group(const ScheduleState& st, const std::string& group_name) {
         return st.groups.get(group_name);
@@ -18,8 +22,10 @@ namespace {
  */
 void python::common::export_ScheduleState(py::module& module) {
 
+    using namespace Opm::Common::DocStrings;
+
     py::class_<ScheduleState>(module, "ScheduleState")
-        .def_property_readonly("nupcol", py::overload_cast<>(&ScheduleState::nupcol, py::const_))
-        .def("group", &get_group, ref_internal, py::arg("group_name"))
+        .def_property_readonly("nupcol", py::overload_cast<>(&ScheduleState::nupcol, py::const_), ScheduleState_nupcol_docstring)
+        .def("group", &get_group, ref_internal, py::arg("group_name"), ScheduleState_get_group_docstring)
         ;
 }

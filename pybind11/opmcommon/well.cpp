@@ -5,6 +5,9 @@
 #include <pybind11/stl.h>
 #include "export.hpp"
 
+// NOTE: This file will be generated at compile time and placed in the build directory
+// See python/generate_docstring_hpp.py, and python/simulators/CMakeLists.txt for details
+#include "OpmCommonPythonDoc.hpp"
 
 namespace {
 
@@ -34,17 +37,19 @@ namespace {
 
 void python::common::export_Well(py::module& module) {
 
+    using namespace Opm::Common::DocStrings;
+
     py::class_< Well >( module, "Well")
         .def_property_readonly( "name", &Well::name )
         .def_property_readonly( "preferred_phase", &preferred_phase )
-        .def( "pos",             &get_pos )
+        .def( "pos",             &get_pos, Well_pos_docstring)
         .def( "status",          &status )
-        .def( "isdefined",       &Well::hasBeenDefined )
+        .def( "isdefined",       &Well::hasBeenDefined, Well_isdefined_docstring)
         .def( "isinjector",      &Well::isInjector )
         .def( "isproducer",      &Well::isProducer )
         .def( "group",           &Well::groupName )
         .def( "guide_rate",      &Well::getGuideRate )
-        .def( "available_gctrl", &Well::isAvailableForGroupControl )
-        .def( "connections",     &connections );
+        .def( "available_gctrl", &Well::isAvailableForGroupControl, Well_available_gctrl_docstring)
+        .def( "connections",     &connections, Well_connections_docstring);
 
 }

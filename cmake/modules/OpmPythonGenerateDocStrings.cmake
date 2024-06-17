@@ -1,15 +1,29 @@
 # Set the path to the input docstrings.json file and the output .hpp file
-set(PYTHON_DOCSTRINGS_FILE "${PROJECT_SOURCE_DIR}/docs/docstrings.json")
-set(DOCSTRINGS_GENERATED_HPP "PyBlackOilSimulatorDoc.hpp")
-set(DOCSTRINGS_GENERATED_HEADER_PATH "${PROJECT_BINARY_DIR}/${TEMP_GEN_DIR}/${DOCSTRINGS_GENERATED_HPP}")
+set(PYBLACKOIL_DOCSTRINGS_FILE "${PROJECT_SOURCE_DIR}/docs/docstrings_simulators.json")
+set(PYBLACKOIL_DOCSTRINGS_GENERATED_HPP "PyBlackOilSimulatorDoc.hpp")
+set(PYBLACKOIL_DOCSTRINGS_GENERATED_HEADER_PATH "${PROJECT_BINARY_DIR}/${TEMP_GEN_DIR}/${PYBLACKOIL_DOCSTRINGS_GENERATED_HPP}")
 
-# Command to run the Python script to generate the .hpp file
+set(COMMON_DOCSTRINGS_FILE "${PROJECT_SOURCE_DIR}/docs/docstrings_common.json")
+set(COMMON_DOCSTRINGS_GENERATED_HPP "OpmCommonPythonDoc.hpp")
+set(COMMON_DOCSTRINGS_GENERATED_HEADER_PATH "${PROJECT_BINARY_DIR}/${TEMP_GEN_DIR}/${COMMON_DOCSTRINGS_GENERATED_HPP}")
+
+# Commands to run the Python script to generate the .hpp file
+
 add_custom_command(
-   OUTPUT ${DOCSTRINGS_GENERATED_HEADER_PATH}
-   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/helper_scripts/generate_docstring_hpp.py ${PYTHON_DOCSTRINGS_FILE} "${DOCSTRINGS_GENERATED_HEADER_PATH}"
-   DEPENDS ${PYTHON_DOCSTRINGS_FILE}
-   COMMENT "Generating ${DOCSTRINGS_GENERATED_HPP} from JSON file"
+   OUTPUT ${PYBLACKOIL_DOCSTRINGS_GENERATED_HEADER_PATH}
+   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/helper_scripts/generate_docstring_hpp.py ${PYBLACKOIL_DOCSTRINGS_FILE} "${PYBLACKOIL_DOCSTRINGS_GENERATED_HEADER_PATH}"
+   PYBLACKOILSIMULATORDOC_HPP "Opm::Pybind::DocStrings"
+   DEPENDS ${PYBLACKOIL_DOCSTRINGS_FILE}
+   COMMENT "Generating ${PYBLACKOIL_DOCSTRINGS_GENERATED_HPP} from JSON file"
+)
+add_custom_command(
+   OUTPUT ${COMMON_DOCSTRINGS_GENERATED_HEADER_PATH}
+   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/helper_scripts/generate_docstring_hpp.py ${COMMON_DOCSTRINGS_FILE} "${COMMON_DOCSTRINGS_GENERATED_HEADER_PATH}"
+   OPMCOMMONPYTHONDOC_HPP "Opm::Common::DocStrings"
+   DEPENDS ${COMMON_DOCSTRINGS_FILE}
+   COMMENT "Generating ${COMMON_DOCSTRINGS_GENERATED_HPP} from JSON file"
 )
 
-# Create a custom target for the generated header file
-add_custom_target(generate_docstring_hpp DEPENDS ${DOCSTRINGS_GENERATED_HEADER_PATH})
+# Create custom targets for the generated header files
+add_custom_target(pyblackoil_generate_docstring_hpp DEPENDS ${PYBLACKOIL_DOCSTRINGS_GENERATED_HEADER_PATH})
+add_custom_target(common_generate_docstring_hpp DEPENDS ${COMMON_DOCSTRINGS_GENERATED_HEADER_PATH})

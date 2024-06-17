@@ -13,7 +13,8 @@ function (build_opm_simulators_pybind11_module)
     "${MODULE_VERSION_OBJECT_FILE}"
   )
   # Make sure the module depends on the generated header file
-  add_dependencies(simulators generate_docstring_hpp)
+  add_dependencies(simulators pyblackoil_generate_docstring_hpp)
+  add_dependencies(simulators common_generate_docstring_hpp)
 
   set_target_properties(
            simulators PROPERTIES
