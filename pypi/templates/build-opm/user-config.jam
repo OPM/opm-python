@@ -1,0 +1,1 @@
+using python : %%PYTHON_VERSION%% : /opt/mypython/%%PYTHON_VERSION_LONG%%/bin/python%%PYTHON_VERSION%% : /opt/mypython/%%PYTHON_VERSION_LONG%%/include/python%%PYTHON_VERSION%% : /opt/mypython/%%PYTHON_VERSION_LONG%%/lib ;
