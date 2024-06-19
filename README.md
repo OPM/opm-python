@@ -79,13 +79,19 @@ build_opm_simulators
 build_opm_python
 
 ```
+
 ## Current state
 
-- Unit tests are working
+- Sphinx build of documentation and publishing documentation to GitHub pages is mostly working,
+  see [PR #7](https://github.com/OPM/opm-python/pull/7)
+- Publishing an opm package to PyPI is being researched, see [PR #6](https://github.com/OPM/opm-python/pull/6) and [PR #8](https://github.com/OPM/opm-python/pull/8)
 
 ## TODO
 
-- Implement cmake "make install" procedure
 - Implement GitHub actions to build sphinx docs
 - Implement GitHub actions to run unit tests
 - Implement workflow to publish "opm" as PyPI package
+- Activate Jenkins build trigger from GitHub comments
+- Clean up/remove Python stuff from opm-common
+- Clean up/remove Python stuff from opm-simulators
+
