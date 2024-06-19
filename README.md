@@ -4,8 +4,6 @@ Python bindings for [`opm-simulators`](https://github.com/OPM/opm-simulators) an
 
 ## To build opm-python
 
-- Note that we are not able to build with shared libraries yet, see https://github.com/OPM/opm-simulators/issues/5390.
-
 - We need to enable embedded Python in `opm-common` in order to run the `PYACTION` test cases.
 
 - Build script:
@@ -21,7 +19,7 @@ do
 done
 
 build_opm_common() {
-   local flags="-DBUILD_SHARED_LIBS=OFF -DOPM_ENABLE_PYTHON=ON -DOPM_ENABLE_EMBEDDED_PYTHON=ON"
+   local flags="-DOPM_ENABLE_PYTHON=ON -DOPM_ENABLE_EMBEDDED_PYTHON=ON"
    cd opm-common
    mkdir build
    cd build
@@ -31,7 +29,7 @@ build_opm_common() {
 }
 
 build_opm_grid() {
-   local flags="-DBUILD_SHARED_LIBS=OFF"
+   local flags=""
    cd opm-grid
    mkdir build
    cd build
@@ -41,7 +39,7 @@ build_opm_grid() {
 }
 
 build_opm_models() {
-   local flags="-DBUILD_SHARED_LIBS=OFF"
+   local flags=""
    cd opm-models
    mkdir build
    cd build
@@ -51,7 +49,7 @@ build_opm_models() {
 }
 
 build_opm_simulators() {
-   local flags="-DBUILD_SHARED_LIBS=OFF"
+   local flags=""
    cd opm-simulators
    mkdir build
    cd build
