@@ -64,7 +64,7 @@ build_opm_python() {
    # If you want to run integration tests from opm-tests add path below, e.g.
    # local flags="-DOPM_TESTS_ROOT=<path to opm-tests>"
    local flags=""
-   cd opm-python-test
+   cd opm-python
    mkdir build
    cd build
    cmake $flags ..
